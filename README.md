@@ -1,4 +1,6 @@
-`URL: `https://jose-daniel-g.github.io/store_angular/
+`URL: `https://jose-daniel-g.github.io/Angular17/
+*User:* jose@gmail.com
+*Password:* 123123123
 ![cellphone_store](images/cellphone_store.png)
 
 # AdminLTE + Angular Integration
@@ -49,7 +51,7 @@ npm install --save-dev @types/jquery
    - Ese es el **nombre de tu proyecto**.  
    - En la sección `build > options`, agrega (debajo de `outputPath`):  
      ```json
-     "baseHref": "/frontend-store/"
+     "baseHref": "/Angular17/"
      ```
 ---
 
@@ -57,8 +59,8 @@ npm install --save-dev @types/jquery
    ```bash
    npm install -g @angular/cli
    ng add angular-cli-ghpages
-   ng build --configuration production --base-href "/store_angular/"
-   ng deploy --base-href=https://jose-daniel-g.github.io/store_angular/
+   ng build --configuration production --base-href "/Angular17/"
+   ng deploy --base-href=https://jose-daniel-g.github.io/Angular17/
    ```
    - De lo contrario si ya esta en angular.json configurado
    ```bash

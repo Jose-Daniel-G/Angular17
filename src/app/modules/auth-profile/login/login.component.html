@@ -1,68 +1,87 @@
 <!-- breadcrumbs -->
 <div class="container">
-    <div class="breadcrumbs">
-        <a href="#"><i class="las la-home"></i></a>
-        <a href="#" class="active">Login</a>
-    </div>
+  <div class="breadcrumbs">
+    <a routerLink="/"><i class="las la-home"></i></a>
+    <a routerLink="/auth/login" class="active">Login</a>
+  </div>
 </div>
 
-<!--Login wrap-->
+<!-- Login wrap -->
 <div class="register_wrap section_padding_b">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-7 col-md-9">
-                <div class="register_form padding_default shadow_sm">
-                    <h4 class="title_2">Login</h4>
-                    <p class="mb-4 text_md">Login if you a a returing customer</p>
-                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-7 col-md-9">
+        <div class="register_form padding_default shadow_sm">
+          <h4 class="title_2">Login</h4>
+          <p class="mb-4 text_md">Login if you are a returning customer</p>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="single_billing_inp">
-                                    <label>Email Address <span>*</span></label>
-                                    <input type="email" formControlName="email" placeholder="example@mail.com">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="single_billing_inp">
-                                    <label>Password <span>*</span></label>
-                                    <input type="password" formControlName="password" placeholder="type password">
-                                </div>
-                            </div>
-                            <div class="col-12 mt-2 d-flex justify-content-between align-items-center">
-                                <div class="custom_check check_2 d-flex align-items-center">
-                                    <input type="checkbox" class="check_inp" hidden id="save-default">
-                                    <label for="save-default">Remember Me</label>
-                                </div>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <p class="text-danger mb-3">{{ loginError }}</p>
 
-                                <a href="forgot-password.html" class="text-color">Forgot Password?</a>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <button type="submit"
-                                    class="default_btn xs_btn rounded px-4 d-block w-100">Login</button>
-                            </div>
+            <div class="row">
+              <!-- Email -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Email Address <span>*</span></label>
+                  <input type="email" formControlName="email" placeholder="example@mail.com" />
 
-                        </div>
-                    </form>
-
-                    <div class="dif_regway my-3">
-                        <span class="txt">Or login in with</span>
-                    </div>
-
-                    <div class="d-flex">
-                        <button class="default_btn xs_btn rounded px-4 d-block w-50 text-capitalize bg-facebook">
-                            <i class="fab fa-facebook-f me-2"></i> Facebook
-                        </button>
-                        <button class="default_btn xs_btn rounded px-4 d-block w-50 ms-3 text-capitalize bg-google">
-                            <i class="fab fa-google me-2"></i> Google
-                        </button>
-                    </div>
-
-                    <p class="text-center mt-3 mb-0">Don't have an account.? <a href="register.html"
-                            class="text-color">Register Now</a></p>
-
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger small mt-1">
+                    <div *ngIf="email.errors?.['required']">El Email es requerido.</div>
+                    <div *ngIf="email.errors?.['email']">Debe tener un formato válido.</div>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Password -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Password <span>*</span></label>
+                  <input type="password" formControlName="password" placeholder="type password" />
+
+                  <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger small mt-1">
+                    <div *ngIf="password.errors?.['required']">El Password es requerido.</div>
+                    <div *ngIf="password.errors?.['minlength']">Debe tener mínimo 8 caracteres.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remember me & Forgot password -->
+              <div class="col-12 mt-2 d-flex justify-content-between align-items-center">
+                <div class="custom_check check_2 d-flex align-items-center">
+                  <input type="checkbox" id="rememberMe" hidden />
+                  <label for="rememberMe">Remember Me</label>
+                </div>
+                <a routerLink="/auth/forgot-password" class="text-color">Forgot Password?</a>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12 mt-3">
+                <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100">
+                  Login
+                </button>
+              </div>
             </div>
+          </form>
+
+          <!-- Social login -->
+          <div class="dif_regway my-3">
+            <span class="txt">Or login in with</span>
+          </div>
+
+          <div class="d-flex">
+            <button class="default_btn xs_btn rounded px-4 d-block w-50 text-capitalize bg-facebook">
+              <i class="fab fa-facebook-f me-2"></i> Facebook
+            </button>
+            <button class="default_btn xs_btn rounded px-4 d-block w-50 ms-3 text-capitalize bg-google">
+              <i class="fab fa-google me-2"></i> Google
+            </button>
+          </div>
+
+          <p class="text-center mt-3 mb-0">
+            Don't have an account? <a routerLink="/auth/register" class="text-color">Register Now</a>
+          </p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
